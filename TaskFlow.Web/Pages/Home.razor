@@ -1,5 +1,7 @@
 ﻿@page "/"
 @inject TaskFlow.Web.Services.TaskService TaskService
+@inject TaskFlow.Web.Services.AuthService AuthService
+@inject NavigationManager Navigation
 
 <div class="page-header">
     <div>
@@ -151,6 +153,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        var isLoggedIn = await AuthService.IsLoggedInAsync();
+        if (!isLoggedIn)
+        {
+            Navigation.NavigateTo("/landing");
+            return;
+        }
         tasks = await TaskService.GetAllAsync();
     }
 

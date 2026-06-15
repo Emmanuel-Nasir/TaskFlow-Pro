@@ -1,0 +1,116 @@
+@page "/landing"
+@layout EmptyLayout
+@inject NavigationManager Navigation
+
+<nav class="landing-nav">
+    <div class="landing-logo">
+        <div class="sidebar-logo-icon">
+            <i class="ti ti-check" aria-hidden="true"></i>
+        </div>
+        <span>TaskFlow</span>
+    </div>
+    <div class="landing-nav-links">
+        <a href="/login" class="nav-link">Sign in</a>
+        <a href="/register" class="btn-primary">Get started free</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">
+        <i class="ti ti-sparkles" aria-hidden="true"></i>
+        Simple. Fast. Organized.
+    </div>
+    <h1>Manage your tasks,<br />not your stress</h1>
+    <p>TaskFlow helps you organize, prioritize, and complete your work — all in one clean, simple dashboard.</p>
+    <div class="hero-buttons">
+        <a href="/register" class="btn-primary btn-lg">
+            Get started free
+            <i class="ti ti-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="/login" class="btn-outline btn-lg">Sign in</a>
+    </div>
+</section>
+
+<section class="app-preview">
+    <div class="preview-card">
+        <div class="preview-header">
+            <div>
+                <p class="preview-title">My tasks</p>
+                <p class="preview-date">@DateTime.Now.ToString("dddd, dd MMMM yyyy")</p>
+            </div>
+            <button class="btn-primary btn-sm">
+                <i class="ti ti-plus" aria-hidden="true"></i>
+                New task
+            </button>
+        </div>
+        <div class="preview-stats">
+            <div class="preview-stat">
+                <p>Total</p>
+                <span>8</span>
+            </div>
+            <div class="preview-stat">
+                <p>Completed</p>
+                <span style="color: #16a34a;">5</span>
+            </div>
+            <div class="preview-stat">
+                <p>Pending</p>
+                <span style="color: #d97706;">3</span>
+            </div>
+        </div>
+        <div class="preview-tasks">
+            <div class="preview-task">
+                <div class="task-toggle completed">
+                    <i class="ti ti-check" aria-hidden="true"></i>
+                </div>
+                <span class="task-title completed">Study for .NET exam</span>
+                <span class="badge badge-high">High</span>
+            </div>
+            <div class="preview-task">
+                <div class="task-toggle"></div>
+                <span class="task-title">Build Blazor frontend</span>
+                <span class="badge badge-medium">Medium</span>
+            </div>
+            <div class="preview-task">
+                <div class="task-toggle"></div>
+                <span class="task-title">Deploy to Azure</span>
+                <span class="badge badge-low">Low</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="ti ti-list-check" aria-hidden="true"></i>
+        </div>
+        <h3>Full CRUD</h3>
+        <p>Create, edit, delete and complete tasks with ease.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="ti ti-search" aria-hidden="true"></i>
+        </div>
+        <h3>Search & filter</h3>
+        <p>Find any task instantly by title, priority or status.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="ti ti-lock" aria-hidden="true"></i>
+        </div>
+        <h3>Secure auth</h3>
+        <p>Your tasks are private and protected with JWT authentication.</p>
+    </div>
+</section>
+
+<footer class="landing-footer">
+    <span>© 2026 TaskFlow</span>
+    <span>Built with ASP.NET Core + Blazor</span>
+</footer>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // If already logged in go straight to dashboard
+    }
+}

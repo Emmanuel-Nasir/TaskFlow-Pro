@@ -10,6 +10,8 @@ public class TaskItem
     public bool IsCompleted { get; set; } = false;
     public Priority Priority { get; set; } = Priority.Medium;  //By default, the priority is set to Medium when a new task is created.
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    //Links this to a user
+    public string UserId { get; set; } = string.Empty;
 }
 
 //The enum is a way to define a set of named constants. In this case, it defines the possible values for the priority of a task: Low, Medium, and High.

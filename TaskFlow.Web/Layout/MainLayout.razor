@@ -25,12 +25,26 @@
         </nav>
 
         <div class="sidebar-user">
-            <div class="user-avatar">AR</div>
+            <div class="user-avatar">U</div>
             <div class="user-info">
-                <p>Arthur</p>
+                <p>User</p>
                 <span>Free plan</span>
             </div>
+            <button class="icon-btn" @onclick="Logout" title="Logout" style="margin-left: auto;">
+                <i class="ti ti-logout" aria-hidden="true"></i>
+            </button>
         </div>
+
+        @code {
+            [Inject] TaskFlow.Web.Services.AuthService AuthService { get; set; } = default!;
+            [Inject] NavigationManager Navigation { get; set; } = default!;
+
+            private async Task Logout()
+            {
+                await AuthService.LogoutAsync();
+                Navigation.NavigateTo("/landing");
+            }
+        }
     </aside>
 
     <main class="main-content">

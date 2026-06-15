@@ -1,0 +1,97 @@
+@page "/register"
+@layout EmptyLayout
+@inject TaskFlow.Web.Services.AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <div class="sidebar-logo-icon">
+                <i class="ti ti-check" aria-hidden="true"></i>
+            </div>
+            <span>TaskFlow</span>
+        </div>
+
+        <h1>Create account</h1>
+        <p class="auth-subtitle">Start managing your tasks today</p>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="auth-error">@errorMessage</div>
+        }
+
+        @if (registrationSuccess)
+        {
+            <div class="auth-success">
+                Account created! <a href="/login">Sign in here</a>
+            </div>
+        }
+
+        <div class="auth-form">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" @bind="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" @bind="password" placeholder="••••••••" />
+            </div>
+            <button class="btn-primary btn-full" @onclick="HandleRegister">
+                @if (isLoading)
+                {
+                    <i class="ti ti-loader" aria-hidden="true"></i>
+                }
+                else
+                {
+                    <span>Create account</span>
+                }
+            </button>
+        </div>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a href="/login">Sign in</a>
+        </p>
+    </div>
+</div>
+
+@code {
+    private string email = string.Empty;
+    private string password = string.Empty;
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+    private bool registrationSuccess = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var isLoggedIn = await AuthService.IsLoggedInAsync();
+        if (isLoggedIn) Navigation.NavigateTo("/");
+    }
+
+    private async Task HandleRegister()
+    {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        {
+            errorMessage = "Please fill in all fields.";
+            return;
+        }
+
+        if (password.Length < 6)
+        {
+            errorMessage = "Password must be at least 6 characters.";
+            return;
+        }
+
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        var success = await AuthService.RegisterAsync(email, password);
+
+        if (success)
+            registrationSuccess = true;
+        else
+            errorMessage = "Registration failed. Email may already be in use.";
+
+        isLoading = false;
+    }
+}

@@ -1,0 +1,55 @@
+# Visual Studio / .NET
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.DotSettings.user
+*.ide
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Build directories
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Publish output
+publish/
+*/publish/
+**/publish/
+
+# NuGet
+*.nupkg
+project.lock.json
+packages/
+*.snupkg
+
+# Entity Framework
+*.db
+*.db-journal
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# User secrets
+secrets.json
+
+# Logs
+*.log
+logs/
+
+# macOS
+.DS_Store
+
+# Misc
+Thumbs.db
+desktop.ini
+
+# Optional: GitHub Pages branch (if you produce gh-pages branch locally)
+# /gh-pages
